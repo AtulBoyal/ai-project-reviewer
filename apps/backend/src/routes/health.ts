@@ -1,0 +1,13 @@
+import { Router } from "express";
+
+const router = Router();
+
+router.get("/", (_req, res) => {
+  res.json({
+    success: true,
+    status: "ok",
+    service: "AI Project Reviewer Lite Backend",
+  });
+});
+
+export default router;
