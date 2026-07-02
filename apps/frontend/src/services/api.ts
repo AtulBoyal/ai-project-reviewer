@@ -15,17 +15,18 @@ export async function analyzeRepository(
 
   formData.append("repository", file);
 
-  const response = await api.post<AnalyzeRepositoryResponse>(
-    "/analyze",
-    formData,
-  );
+  const response =
+    await api.post<AnalyzeRepositoryResponse>(
+      "/analyze",
+      formData,
+    );
 
   return response.data;
 }
 
 export async function getProgress() {
-    const response =
-        await axios.get("/progress");
+  const response =
+    await api.get("/progress");
 
-    return response.data;
+  return response.data;
 }
