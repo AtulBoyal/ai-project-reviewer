@@ -5,7 +5,7 @@
 <p align="center">
 
 
-🌐 Website: **[<DEPLOYMENT_LINK_HERE>](https://ai-project-reviewer-ab.vercel.app/)**
+🌐 Website: **(https://ai-project-reviewer-ab.vercel.app/)**
 
 </p>
 
