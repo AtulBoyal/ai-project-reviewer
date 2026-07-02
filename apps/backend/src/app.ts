@@ -8,6 +8,16 @@ import multer from "multer";
 
 const app = express();
 
+/* ---------- Request Logger (TEMPORARY) ---------- */
+app.use((req, _res, next) => {
+  console.log(
+    `[${new Date().toISOString()}] ${req.method} ${req.url}`,
+  );
+
+  next();
+});
+/* ----------------------------------------------- */
+
 app.use(
   cors({
     origin:

@@ -18,11 +18,6 @@ export async function analyzeRepository(
   const response = await api.post<AnalyzeRepositoryResponse>(
     "/analyze",
     formData,
-    {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    },
   );
 
   return response.data;
@@ -30,9 +25,7 @@ export async function analyzeRepository(
 
 export async function getProgress() {
     const response =
-        await axios.get(
-            "http://localhost:5000/api/progress",
-        );
+        await axios.get("/progress");
 
     return response.data;
 }
