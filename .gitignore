@@ -1,0 +1,39 @@
+# Node modules
+node_modules/
+
+# Build outputs
+dist/
+build/
+
+# Environment variables
+.env
+.env.*
+
+!.env.example
+
+# Logs
+*.log
+
+# Coverage
+coverage/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Vite
+vite.config.ts.timestamp-*
+
+# Temporary files
+tmp/
+temp/
+
+tmp/*
+!tmp/.gitkeep
+
+demo
+logs

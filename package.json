@@ -1,0 +1,24 @@
+{
+  "name": "ai-project-reviewer-lite",
+  "private": true,
+  "version": "1.0.0",
+  "description": "AI-powered repository analysis and engineering review tool.",
+  "scripts": {
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "keywords": [
+    "ai",
+    "gemini",
+    "code-review",
+    "repository-analysis"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.6.0",
+    "globals": "^17.7.0",
+    "prettier": "^3.9.4"
+  }
+}
