@@ -49,6 +49,12 @@ export function useAnalysis() {
   }
 
   async function analyze(file: File) {
+    setResult(null);
+    setError("");
+    setUploadTooLargeError(null);
+    setRepositoryLimitError(null);
+
+
     setProgress({
       stage: "UPLOADING",
       message: "",
@@ -56,29 +62,48 @@ export function useAnalysis() {
     });
 
     setLoading(true);
-    const interval = setInterval(
-      async () => {
-        try {
-          const latest =
-            await getProgress();
 
-          setProgress(latest);
-        } catch {}
-      },
-      500,
-    );
+    let interval: ReturnType<typeof setInterval>;
+
+    interval = setInterval(async () => {
+      try {
+        const latest = await getProgress();
+
+        console.log("Progress:", latest);
+
+        setProgress(latest);
+
+        if (
+          latest.stage === "COMPLETED" ||
+          latest.stage === "FAILED"
+        ) {
+          clearInterval(interval);
+        }
+      } catch {
+        // Ignore polling failures
+      }
+    }, 500);
     setError("");
 
     try {
       const response =
         await analyzeRepository(file);
 
+      console.log("Analyze response:", response);
+
+      clearInterval(interval);
+
       setResult(response);
+
+      console.log("Result state updated");
+
       setProgress({
         stage: "COMPLETED",
         message: "Analysis completed.",
         percentage: 100,
       });
+
+      console.log("Progress set to completed.");
       
     } catch (error) {
       if (axios.isAxiosError(error)) {
@@ -105,8 +130,6 @@ export function useAnalysis() {
         percentage: 100,
       });
     } finally {
-        clearInterval(interval);
-
         setLoading(false);
     }
   }

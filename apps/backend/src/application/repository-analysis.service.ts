@@ -26,7 +26,11 @@ export async function analyzeUploadedRepository(
     extractionDirectory,
   );
 
-  return analyzeRepository({
+  const result = await analyzeRepository({
     metadata,
   });
+
+  progressService.setStage("COMPLETED");
+
+  return result;
 }
