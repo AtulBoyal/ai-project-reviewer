@@ -70,15 +70,7 @@ export default function HomePage() {
 
       <div className="mt-10">
         <AnalysisProgress
-          status={
-            loading
-              ? "analyzing"
-              : error
-                ? "failed"
-                : result
-                  ? "completed"
-                  : "idle"
-          }
+          stage={progress.stage}
         />
 
         {result && (

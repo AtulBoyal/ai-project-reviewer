@@ -1,60 +1,53 @@
 import ProgressStep from "./ProgressStep";
 
-type AnalysisStatus =
-  | "idle"
-  | "uploading"
-  | "extracting"
-  | "analyzing"
-  | "completed"
-  | "failed";
+import type { AnalysisStage } from "../../types/progress";
 
 interface Props {
-  status: AnalysisStatus;
+  stage: AnalysisStage;
 }
 
-const ORDER: AnalysisStatus[] = [
-  "idle",
-  "uploading",
-  "extracting",
-  "analyzing",
-  "completed",
+const ORDER: AnalysisStage[] = [
+  "IDLE",
+  "UPLOADING",
+  "EXTRACTING",
+  "READING_REPOSITORY",
+  "BUILDING_METADATA",
+  "STATIC_ANALYSIS",
+  "BUILDING_AI_CONTEXT",
+  "AI_REVIEW",
+  "VALIDATING_RESPONSE",
+  "GENERATING_MARKDOWN",
+  "COMPLETED",
 ];
 
-const LABELS: Record<
-  AnalysisStatus,
-  string
-> = {
-  idle: "Ready",
-
-  uploading: "Uploading",
-
-  extracting: "Extracting",
-
-  analyzing: "AI Analysis",
-
-  completed: "Completed",
-
-  failed: "Failed",
+const LABELS: Record<AnalysisStage, string> = {
+  IDLE: "Ready",
+  UPLOADING: "Uploading",
+  EXTRACTING: "Extracting",
+  READING_REPOSITORY: "Reading Repository",
+  BUILDING_METADATA: "Building Metadata",
+  STATIC_ANALYSIS: "Static Analysis",
+  BUILDING_AI_CONTEXT: "Preparing AI Context",
+  AI_REVIEW: "AI Review",
+  VALIDATING_RESPONSE: "Validating Response",
+  GENERATING_MARKDOWN: "Generating Markdown",
+  COMPLETED: "Completed",
+  FAILED: "Failed",
 };
 
 export default function AnalysisProgress({
-  status,
+  stage,
 }: Props) {
-  const current =
-    ORDER.indexOf(status);
+  const current = ORDER.indexOf(stage);
 
   return (
     <div className="space-y-3">
-      {ORDER.map((step, index) => (
+      {ORDER.map((item, index) => (
         <ProgressStep
-          key={step}
-          title={LABELS[step]}
-          active={
-            index === current
-          }
-          completed={
-            index < current
-          }
+          key={item}
+          title={LABELS[item]}
+          active={index === current}
+          completed={index < current}
         />
       ))}
     </div>

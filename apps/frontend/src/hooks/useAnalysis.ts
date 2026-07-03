@@ -130,6 +130,7 @@ export function useAnalysis() {
         percentage: 100,
       });
     } finally {
+      clearInterval(interval);
         setLoading(false);
     }
   }
