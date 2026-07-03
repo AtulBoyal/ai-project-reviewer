@@ -4,7 +4,7 @@
 
 <p align="center">
 
-🌐 **Live Demo:** https://ai-project-reviewer-ab.vercel.app/
+🌐 **Live Demo:** https://repo-insight-ai-ab.vercel.app/
 
 </p>
 
