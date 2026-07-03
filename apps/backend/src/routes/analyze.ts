@@ -13,11 +13,7 @@ router.post(
   "/analyze",
   upload.single("repository"),
   async (req, res) => {
-    progressService.reset();
-    
-    progressService.setStage(
-      "UPLOADING",
-    );
+    progressService.startNewAnalysis();
 
     await logger.startSession();
 

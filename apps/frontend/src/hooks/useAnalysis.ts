@@ -61,6 +61,8 @@ export function useAnalysis() {
       percentage: 5,
     });
 
+    let analysisStarted = false;
+    
     setLoading(true);
 
     let interval: ReturnType<typeof setInterval>;
@@ -69,7 +71,15 @@ export function useAnalysis() {
       try {
         const latest = await getProgress();
 
-        console.log("Progress:", latest);
+        if (
+          !analysisStarted &&
+          latest.stage === "COMPLETED"
+        ) {
+          // Ignore stale completion from previous analysis
+          return;
+        }
+
+        analysisStarted = true;
 
         setProgress(latest);
 
@@ -83,6 +93,7 @@ export function useAnalysis() {
         // Ignore polling failures
       }
     }, 500);
+    
     setError("");
 
     try {

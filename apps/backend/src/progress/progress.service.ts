@@ -39,6 +39,13 @@ class ProgressService {
       updatedAt: Date.now(),
     };
   }
+
+  startNewAnalysis(): void {
+    this.progress = {
+      ...ANALYSIS_PROGRESS.UPLOADING,
+      updatedAt: Date.now(),
+    };
+  }
 }
 
 export const progressService =
