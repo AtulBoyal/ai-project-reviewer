@@ -26,7 +26,6 @@ export default function HomePage() {
     analyze,
     loading,
     result,
-    error,
     progress,
 
     uploadTooLargeError,
