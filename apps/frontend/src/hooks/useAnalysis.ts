@@ -9,6 +9,7 @@ import type {
   UploadTooLargeResponse,
 } from "../types/errors";
 import { getProgress } from "../services/api";
+import { MAX_UPLOAD_SIZE } from "../constants/upload";
 
 export function useAnalysis() {
   const [loading, setLoading] = useState(false);
@@ -54,6 +55,17 @@ export function useAnalysis() {
     setUploadTooLargeError(null);
     setRepositoryLimitError(null);
 
+    if (file.size > MAX_UPLOAD_SIZE) {
+      setUploadTooLargeError({
+        success: false,
+        error: "UPLOAD_TOO_LARGE",
+        message: `Maximum upload size is ${
+          MAX_UPLOAD_SIZE / 1024 / 1024
+        } MB.`,
+      });
+
+      return;
+    }
 
     setProgress({
       stage: "UPLOADING",
@@ -93,7 +105,7 @@ export function useAnalysis() {
         // Ignore polling failures
       }
     }, 500);
-    
+
     setError("");
 
     try {
@@ -120,16 +132,64 @@ export function useAnalysis() {
       if (axios.isAxiosError(error)) {
         const data = error.response?.data;
 
-        switch (data?.error) {
-          case "UPLOAD_TOO_LARGE":
-            setUploadTooLargeError(data);
-            return;
+        // Handle explicit backend upload size error
+        if (
+          error.response?.status === 413 ||
+          data?.error === "UPLOAD_TOO_LARGE"
+        ) {
+          setUploadTooLargeError({
+            success: false,
+            error: "UPLOAD_TOO_LARGE",
+            message:
+              data?.message ??
+              "The selected ZIP file exceeds the maximum upload size (500 MB).",
+          });
 
-          case "REPOSITORY_TOO_LARGE":
-            setRepositoryLimitError(data);
-            return;
+          setProgress({
+            stage: "IDLE",
+            message: "",
+            percentage: 0,
+          });
+
+          return;
         }
-      } else if (error instanceof Error) {
+
+        // Handle repository source-code size limit
+        if (data?.error === "REPOSITORY_TOO_LARGE") {
+          setRepositoryLimitError(data);
+
+          setProgress({
+            stage: "IDLE",
+            message: "",
+            percentage: 0,
+          });
+
+          return;
+        }
+
+        // Browser/network aborted upload
+        if (
+          error.code === "ERR_NETWORK" ||
+          error.code === "ECONNABORTED"
+        ) {
+          setUploadTooLargeError({
+            success: false,
+            error: "UPLOAD_TOO_LARGE",
+            message:
+              "The upload could not be completed. The file is likely too large or the connection was interrupted.",
+          });
+
+          setProgress({
+            stage: "IDLE",
+            message: "",
+            percentage: 0,
+          });
+
+          return;
+        }
+      }
+
+      if (error instanceof Error) {
         setError(error.message);
       } else {
         setError("Analysis failed.");
@@ -142,7 +202,7 @@ export function useAnalysis() {
       });
     } finally {
       clearInterval(interval);
-        setLoading(false);
+      setLoading(false);
     }
   }
 

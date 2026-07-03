@@ -1,4 +1,5 @@
 import { AlertTriangle, X } from "lucide-react";
+import { MAX_UPLOAD_SIZE } from "../../constants/upload";
 
 interface Props {
   onClose: () => void;
@@ -51,8 +52,8 @@ export default function UploadTooLargeModal({
             </p>
 
             <p className="mt-2 text-4xl font-bold text-red-600">
-              500 MB
-            </p>
+              {MAX_UPLOAD_SIZE / 1024 / 1024} MB
+            </p>                                
           </div>
 
           <div className="rounded-xl bg-red-50 p-5">

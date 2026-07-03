@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { FolderUp, UploadCloud } from "lucide-react";
+import { MAX_UPLOAD_SIZE } from "../../constants/upload";
 
 interface Props {
   onFileSelected(file: File): void;
@@ -84,7 +85,7 @@ export default function UploadZone({
           </p>
 
           <ul className="mt-2 space-y-1">
-            <li>• Maximum upload size: <strong>500 MB</strong></li>
+            <li>• Maximum upload size: <strong>{MAX_UPLOAD_SIZE / 1024 / 1024} MB</strong></li>
             <li>• Maximum analyzed source code: <strong>50 MB</strong></li>
             <li>• Generated folders (node_modules, dist, build, .git, etc.) are skipped automatically.</li>
           </ul>

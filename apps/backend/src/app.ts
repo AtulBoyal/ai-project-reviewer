@@ -5,6 +5,7 @@ import analyzeRouter from "./routes/analyze.js";
 import healthRouter from "./routes/health.js";
 import progressRouter from "./routes/progress.js";
 import multer from "multer";
+import { MAX_UPLOAD_SIZE } from "./constants/upload.js";
 
 const app = express();
 
@@ -59,8 +60,9 @@ app.use(
       return res.status(413).json({
         success: false,
         error: "UPLOAD_TOO_LARGE",
-        message:
-          "Maximum upload size is 500 MB.",
+        message: `Maximum upload size is ${
+          MAX_UPLOAD_SIZE / 1024 / 1024
+        } MB.`,
       });
     }
 

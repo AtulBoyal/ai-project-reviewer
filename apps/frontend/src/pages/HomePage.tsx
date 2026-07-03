@@ -104,7 +104,10 @@ export default function HomePage() {
 
         {uploadTooLargeError && (
           <UploadTooLargeModal
-            onClose={reset}
+            onClose={() => {
+              reset();
+              setFile(null);
+            }}
           />
         )}
 
