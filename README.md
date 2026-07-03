@@ -1,183 +1,203 @@
-# AI Project Reviewer
+# RepoInsight-AI
 
-> AI-powered engineering review platform that analyzes software repositories and generates professional architecture reviews, code quality reports, resume feedback, interview questions, and actionable engineering recommendations.
+> AI-powered repository intelligence platform that analyzes software repositories and generates professional engineering reports covering architecture, code quality, maintainability, resume readiness, and interview preparation.
 
 <p align="center">
 
-
-🌐 Website: **(https://ai-project-reviewer-ab.vercel.app/)**
+🌐 **Live Demo:** https://ai-project-reviewer-ab.vercel.app/
 
 </p>
 
 ---
 
-## Overview
+# Overview
 
-AI Project Reviewer automatically reviews software repositories using Google's Gemini models and produces a comprehensive engineering report similar to what an experienced Staff Software Engineer would provide during a technical design review.
+RepoInsight-AI automatically analyzes software repositories and generates comprehensive engineering reports using Google's Gemini models.
 
-Instead of simply summarizing a repository, the platform performs repository analysis, static analysis, architecture evaluation, engineering reasoning, and generates professional recommendations that help developers improve their projects.
+Rather than simply summarizing source code, RepoInsight-AI performs repository traversal, static analysis, metadata extraction, architecture reasoning, and AI-powered engineering evaluation to provide actionable technical feedback similar to an experienced software engineer performing a design review.
 
-The generated report includes:
+Each generated report includes:
 
-- Project Summary
+- Executive Summary
 - Technology Stack Detection
+- Repository Statistics
 - Architecture Review
-- Folder Structure Evaluation
-- Code Quality Analysis
+- Code Quality Assessment
 - Engineering Strengths
 - Engineering Weaknesses
-- Actionable Improvement Suggestions
-- Resume Feedback
+- Actionable Improvement Recommendations
+- Resume Highlights
 - Interview Questions
 - Downloadable Markdown Report
 
 ---
 
-## Features
+# Features
 
-### Repository Analysis
+## Intelligent Repository Analysis
 
-- Upload any Git repository as a ZIP archive
+- Upload repositories as ZIP archives
 - Automatic repository extraction
-- Repository traversal
-- Intelligent repository filtering
-- Ignores generated folders like:
-  - `node_modules`
-  - `.git`
-  - `dist`
-  - `build`
-  - `coverage`
-- Detects programming languages
-- Detects frameworks
-- Extracts repository metadata
+- Repository root detection
+- Recursive repository traversal
+- Repository metadata generation
+- Smart source code filtering
+- Programming language detection
+- Framework detection
 
 ---
 
-### AI Engineering Review
+## Smart Repository Filtering
+
+Before AI analysis, the platform automatically ignores unnecessary files including:
+
+- `node_modules`
+- `.git`
+- `dist`
+- `build`
+- `.next`
+- `coverage`
+- generated artifacts
+- binary assets
+
+Only meaningful source code is processed, significantly reducing token usage while improving AI response quality.
+
+---
+
+## AI Engineering Review
 
 Powered by **Google Gemini 2.5 Flash**
 
-The AI reviews:
+RepoInsight-AI evaluates:
 
 - Software Architecture
 - Folder Organization
-- Engineering Practices
 - Code Quality
-- Design Decisions
-- Scalability
+- Engineering Practices
 - Maintainability
+- Scalability
+- Design Decisions
 - Resume Readiness
 
-The generated output is validated before being returned.
+Every AI response is validated before generating the final report.
 
 ---
 
-### Professional Report
+## Professional Engineering Reports
 
-Generates a structured engineering report containing:
+Automatically generates structured engineering reports containing:
 
 - Executive Summary
 - Technology Stack
+- Repository Statistics
 - Architecture Review
-- Folder Structure Score
-- Code Quality Score
-- Strengths
-- Weaknesses
-- Engineering Recommendations
-- Resume Review
+- Code Quality Analysis
+- Engineering Strengths
+- Engineering Weaknesses
+- Improvement Suggestions
+- Resume Feedback
 - Interview Questions
 
-Reports can also be exported as Markdown.
+Reports can be downloaded as professional Markdown documents.
 
 ---
 
-### Smart Progress Tracking
+## Real-Time Analysis Progress
 
-Real repository progress instead of fake loading bars.
+Provides live progress updates throughout the repository processing pipeline.
 
 Stages include:
 
-- Uploading Repository
-- Extracting Repository
-- Reading Repository
-- Building Metadata
+- Upload Validation
+- Repository Extraction
+- Repository Traversal
+- Metadata Generation
 - Static Analysis
+- AI Context Building
 - AI Review
 - Response Validation
 - Markdown Generation
 
 ---
 
-### Intelligent Repository Filtering
+## Intelligent Repository Validation
 
-Before sending anything to Gemini:
+Supports two independent validation stages:
 
-- Generated folders are ignored
-- Binary assets are skipped
-- Large files are skipped
-- Only analyzable source code is processed
+### Upload Limit
 
-This reduces cost while improving AI quality.
+- Maximum ZIP Upload: **500 MB**
+
+### Analysis Limit
+
+- Maximum Analyzable Source Code: **50 MB**
+
+This enables uploading repositories containing large dependency folders while analyzing only relevant source code.
 
 ---
 
-### Error Handling
+## Robust Error Handling
 
 Gracefully handles:
 
-- Invalid ZIP files
+- Invalid ZIP archives
 - Uploads larger than 500 MB
-- Repositories with more than 50 MB of analyzable source code
+- Oversized repositories
+- Corrupted archives
 - AI service failures
+- Network failures
 - Invalid AI responses
-- Automatic AI response repair
 
 ---
 
-## Technology Stack
+# Technology Stack
 
-### Frontend
+## Frontend
 
 - React
 - TypeScript
 - Vite
 - Tailwind CSS
 - Axios
-- Lucide Icons
+- Lucide React
 
-### Backend
+## Backend
 
 - Node.js
-- Express
+- Express.js
 - TypeScript
 - Multer
-- unzipper
+- Unzipper
 - Zod
 
-### AI
+## AI
 
 - Google Gemini 2.5 Flash
 
+## Deployment
+
+- Vercel
+- Render
+
 ---
 
-## Project Structure
+# Project Structure
 
-```
+```text
 apps/
 ├── frontend/
-│
 └── backend/
 ```
 
-Frontend contains the user interface.
+The frontend provides the user interface and repository upload experience.
 
-Backend handles repository processing, AI orchestration, validation, logging and report generation.
+The backend performs repository processing, static analysis, AI orchestration, validation, progress tracking, logging, and report generation.
 
 ---
 
-## Engineering Pipeline
+# Engineering Pipeline
 
-```
+```text
 Repository ZIP
         │
         ▼
@@ -199,117 +219,126 @@ Metadata Generation
 Static Analysis
         │
         ▼
-Context Builder
+AI Context Builder
         │
         ▼
-Gemini Review
+Gemini Engineering Review
         │
         ▼
-JSON Validation
+Response Validation
         │
         ▼
-Response Repair (if needed)
+Markdown Report Generation
         │
         ▼
-Markdown Generation
-        │
-        ▼
-Engineering Report
+Professional Engineering Report
 ```
 
 ---
 
-## Running Locally
+# Running Locally
 
-### Clone
+## Clone Repository
 
 ```bash
-git clone https://github.com/AtulBoyal/ai-project-reviewer
+git clone https://github.com/AtulBoyal/ai-project-reviewer.git
+
 cd ai-project-reviewer
 ```
 
-### Install
+## Install Dependencies
 
 ```bash
 pnpm install
 ```
 
-### Backend
+## Backend
 
 ```bash
 cd apps/backend
+
 npm run dev
 ```
 
-### Frontend
+## Frontend
 
 ```bash
 cd apps/frontend
+
 npm run dev
 ```
 
 ---
 
-## Environment Variables
+# Environment Variables
 
-Backend
+## Backend
 
-```
+```env
 GEMINI_API_KEY=your_api_key
 GEMINI_MODEL=gemini-2.5-flash
 ```
 
 ---
 
-### Generated Engineering Report
+# Screenshots
+
+## Home Page
 
 > *(Add Screenshot)*
 
 ---
 
-### Repository Size Validation
+## Generated Engineering Report
 
 > *(Add Screenshot)*
 
 ---
 
-## Future Roadmap
+## Repository Size Validation
 
-### Version 1.1
+> *(Add Screenshot)*
 
-- GitHub Repository URL support
-- Drag-and-drop uploads
-- Better language detection
+---
 
-### Version 1.2
+# Future Roadmap
 
-- Multi-file Markdown export
-- Repository statistics dashboard
-- Improved AI prompting
+## Version 1.1
 
-### Version 2.0
+- GitHub Repository URL Analysis
+- Drag & Drop Uploads
+- Improved Language Detection
+- Repository Metrics Dashboard
+
+## Version 1.2
+
+- Repository Scoring
+- Dependency Analysis
+- Security Analysis
+- Multi-Report Export
+
+## Version 2.0
 
 - User Authentication
 - Saved Reports
 - Analysis History
 - GitHub OAuth
-- Multi-LLM Support
-- Team Workspace
 - Repository Comparison
+- Team Workspaces
+- Background Jobs
 - CI/CD Integration
+- Multi-LLM Support
 
 ---
 
-## Why I Built This
+# Why RepoInsight-AI?
 
-Recruiters often spend only a few minutes reviewing projects, while developers rarely receive detailed engineering feedback beyond linting and automated tests.
+Understanding an unfamiliar repository takes time—even for experienced software engineers.
 
-AI Project Reviewer was built to bridge that gap by providing repository-level engineering reviews, architecture insights, and actionable recommendations using modern large language models.
-
-The goal is to help developers improve both their software engineering skills and the quality of projects they showcase in their portfolios.
+RepoInsight-AI accelerates this process by combining repository analysis, static code analysis, and AI reasoning to generate structured engineering insights that help developers improve project quality, prepare for interviews, strengthen resumes, and understand unfamiliar codebases faster.
 
 ---
 
-## License
+# License
 
 MIT License

@@ -37,7 +37,7 @@ export default function HomePage() {
   return (
     <Page>
       <PageHeader
-        title="AI Project Reviewer"
+        title="RepoInsight AI"
         subtitle="Professional AI-powered engineering review for GitHub repositories."
       />
 

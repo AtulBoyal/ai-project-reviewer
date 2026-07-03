@@ -6,7 +6,7 @@ router.get("/", (_req, res) => {
   res.json({
     success: true,
     status: "ok",
-    service: "AI Project Reviewer Lite Backend",
+    service: "RepoInsight-AI Backend",
   });
 });
 

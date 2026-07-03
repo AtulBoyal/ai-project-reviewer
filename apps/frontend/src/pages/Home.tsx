@@ -11,7 +11,7 @@ export default function Home() {
         <section className="mx-auto max-w-5xl px-6 py-14">
           <div className="text-center">
             <h2 className="text-5xl font-bold tracking-tight text-slate-900">
-              AI Project Reviewer
+              RepoInsight-AI
             </h2>
 
             <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-slate-600">
